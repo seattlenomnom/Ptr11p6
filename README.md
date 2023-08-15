@@ -8,3 +8,5 @@ the entry to be deleted.
 Get the, "mule", created. The basic form and a printList() function.
 Work on insertEntry().
 Work on deleteEntry().
+## Things done
+Mule created. List and printList() done.
