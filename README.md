@@ -10,3 +10,8 @@ Work on insertEntry().
 Work on deleteEntry().
 ## Things done
 Mule created. List and printList() done.
+tried insert() on git branch insert-screwed up so bad deleted branch
+Created newinsert branch. Worked insert() out on paper will program it 
+here.
+Insert() finally works. 
+Work on delete().

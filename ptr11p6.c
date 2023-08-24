@@ -1,6 +1,9 @@
 /* ptr11p6.c
  * source file for ptr11p6
  *
+ * added struct entry head.
+ * added insert(), finally works.
+ *
 */
 
 /* includes */
@@ -29,14 +32,15 @@ struct entry{
 /* function declarations */
 
 void printList(struct entry *p2list);
+void insertEntry(struct entry *newEntry, struct entry *insertPoint);
 
 
 
 
 int main(int argc, char *argv[]){
 
-    struct entry n1, n2, n3, n4, n5;
-    struct entry *p2list;
+    struct entry n1, n2, n3, n4, n5, head;
+    struct entry newEntry;
 
 /* init entries */
 
@@ -45,6 +49,9 @@ int main(int argc, char *argv[]){
     n3.value = 300;
     n4.value = 400;
     n5.value = 500;
+    head.value = 0;
+    newEntry.value = 600;
+
 
 
 
@@ -66,12 +73,23 @@ int main(int argc, char *argv[]){
     n5.next = NULL;
     n5.prev = &n4;
 
-    p2list = &n1;
+    newEntry.next = NULL;
+    newEntry.prev = NULL;
+
+    head.next = &n1;
+    head.prev = NULL;
+
 
 
 /* print out the list */
 
-    printList(p2list);
+    printList(&head);
+
+    insertEntry(&newEntry, &head);
+
+
+
+    printList(&head);
 
 
 
@@ -86,7 +104,7 @@ void printList(struct entry *p2list){
 
     struct entry *theEntry;
 
-    theEntry = p2list;
+    theEntry = p2list->next;
     while(theEntry != NULL){
         printf("%i ", theEntry->value);
         theEntry = theEntry->next;
@@ -94,30 +112,27 @@ void printList(struct entry *p2list){
     printf("\n");
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
 
+void insertEntry(struct entry *newEntry, struct entry *insertPoint){
 
+    /* init newEntry */
 
+    newEntry->next = insertPoint->next;
+    newEntry->prev = insertPoint;
 
+    /* update insertPoint */
 
+    insertPoint->next = newEntry;
 
+    /* update -right- */
+    if((newEntry->next) ==NULL){
+        ;
+    }else{
+    (newEntry->next)->prev = newEntry;
+    }
+
+}
 
