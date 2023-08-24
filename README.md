@@ -15,3 +15,4 @@ Created newinsert branch. Worked insert() out on paper will program it
 here.
 Insert() finally works. 
 Work on delete().
+deleteEntry() works. Move on to next problem.

@@ -3,6 +3,7 @@
  *
  * added struct entry head.
  * added insert(), finally works.
+ * added delete(), finally works.
  *
 */
 
@@ -33,6 +34,7 @@ struct entry{
 
 void printList(struct entry *p2list);
 void insertEntry(struct entry *newEntry, struct entry *insertPoint);
+void deleteEntry(struct entry *entry);
 
 
 
@@ -87,11 +89,23 @@ int main(int argc, char *argv[]){
 
     insertEntry(&newEntry, &head);
 
+    printList(&head);
 
+    deleteEntry(&newEntry);
 
     printList(&head);
 
+    deleteEntry(&n1);
 
+    printList(&head);
+
+    deleteEntry(&n5);
+
+    printList(&head);
+
+    deleteEntry(&head);
+
+    printList(&head);
 
 
     return(0);
@@ -132,6 +146,32 @@ void insertEntry(struct entry *newEntry, struct entry *insertPoint){
         ;
     }else{
     (newEntry->next)->prev = newEntry;
+    }
+
+}
+
+
+
+void deleteEntry(struct entry *entry){
+
+    if((entry->prev) == NULL){
+        printf("Don't delete list head\n");
+    }else if(entry->next == NULL){
+        (entry->prev)->next = NULL;
+        entry->next = NULL;
+        entry->prev = NULL;
+    }else{
+        /* update left */
+        (entry->prev)->next = entry->next;
+
+        /* update right */
+        (entry->next)->prev = entry->prev;
+
+        /* nullify entry */
+        entry->next = NULL;
+        entry->prev = NULL;
+
+
     }
 
 }
